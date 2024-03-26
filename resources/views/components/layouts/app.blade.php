@@ -54,30 +54,9 @@
             </ul>
         </nav>
     @endif --}}
-    <main class="w-full overflow-y-auto">
+    <main class="w-full">
         {{ $slot }}
-        <footer class="flex justify-center my-10 text-white">
-            <h2>Instanewt</h2>
-        </footer>
     </main>
-    {{-- <script>
-        document.addEventListener('dragstart', function(evt) {
-            evt.preventDefault();
-        });
-
-        function likePost(element) {
-            const icon = element.querySelector("i");
-            if (icon.dataset.liked == 0) {
-                icon.classList.replace("bi-heart", "bi-heart-fill")
-                icon.classList.toggle("text-red-500")
-                icon.dataset.liked = 1;
-            } else {
-                icon.classList.replace("bi-heart-fill", "bi-heart")
-                icon.classList.toggle("text-red-500")
-                icon.dataset.liked = 0;
-            }
-        }
-    </script> --}}
 
 </body>
 

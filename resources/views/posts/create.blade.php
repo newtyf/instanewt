@@ -4,7 +4,7 @@
             <p class="font-bold text-sm">{{ session('status') }}</p>
         </div>
     @endif
-    <section class="mx-auto mt-20 max-w-screen-md">
+    <section class="mx-auto mt-20 max-w-screen-md overflow-y-auto">
         <article class="mx-4 md:mx-auto w-full border border-neutral-600 text-white text-center py-6">
             <form action="{{ route('posts.create') }}" method="POST" enctype="multipart/form-data"
                 class="px-4 flex w-full">
@@ -47,6 +47,9 @@
                 </div>
             </form>
         </article>
+        <footer class="flex justify-center my-10 text-white">
+            <h2>Instanewt</h2>
+        </footer>
     </section>
     <script>
         const uploadInput = document.getElementById('upload');

@@ -4,7 +4,7 @@
             <p class="font-bold text-sm">{{ session('status') }}</p>
         </div>
     @endif
-    <section class="mx-auto mt-20 max-w-screen-sm">
+    <section class="mx-auto mt-20 max-w-screen-sm overflow-y-auto">
         <article class="mx-4 md:mx-auto w-full border border-neutral-600 text-white text-center py-10">
             <form action="{{ route('account.edit') }}" method="POST" enctype="multipart/form-data" class="px-24">
                 @csrf
@@ -53,7 +53,7 @@
                     <label for="biography">
                         <p class="text-left text-sm mb-2">Biography:</p>
                         <textarea id="biography" name="biography" type="text"
-                        class="w-full text-sm outline-none bg-neutral-800 p-1 resize-none hover:resize-y" placeholder="Biography" autofocus>{{ auth()->user()->biography }}</textarea>
+                            class="w-full text-sm outline-none bg-neutral-800 p-1 resize-none hover:resize-y" placeholder="Biography" autofocus>{{ auth()->user()->biography }}</textarea>
                     </label>
                     @error('biography')
                         <small class="font-bold text-red-500">{{ $message }}</small>
@@ -66,50 +66,57 @@
             </form>
             </p>
         </article>
+        <footer class="flex justify-center my-10 text-white">
+            <h2>Instanewt</h2>
+        </footer>
     </section>
-    <script>
-        const uploadInput = document.getElementById('upload');
-        const imagePreview = document.getElementById('image-preview');
+    @push('script')
+        <script>
+            const uploadInput = document.getElementById('upload');
+            const imagePreview = document.getElementById('image-preview');
 
-        // Check if the event listener has been added before
-        let isEventListenerAdded = false;
+            console.log("a")
 
-        uploadInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
+            // Check if the event listener has been added before
+            let isEventListenerAdded = false;
 
-            if (file) {
+            uploadInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
 
-                const reader = new FileReader();
-                reader.onload = (e) => {
+                if (file) {
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.innerHTML =
+                            `<img src="${e.target.result}" class="w-40 h-40 object-cover rounded-full mx-auto" alt="Image preview" />`;
+
+                        // Add event listener for image preview only once
+                        if (!isEventListenerAdded) {
+                            imagePreview.addEventListener('click', () => {
+                                console.log("a")
+                                uploadInput.click();
+                            });
+
+                            isEventListenerAdded = true;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
                     imagePreview.innerHTML =
-                        `<img src="${e.target.result}" class="w-40 h-40 object-cover rounded-full mx-auto" alt="Image preview" />`;
+                        `<div class="bg-gray-200 w-40 h-40 rounded-full flex items-center justify-center text-gray-500">No image preview</div>`;
 
-                    // Add event listener for image preview only once
-                    if (!isEventListenerAdded) {
-                        imagePreview.addEventListener('click', () => {
-                            console.log("a")
-                            uploadInput.click();
-                        });
+                    // Remove the event listener when there's no image
+                    imagePreview.removeEventListener('click', () => {
+                        uploadInput.click();
+                    });
 
-                        isEventListenerAdded = true;
-                    }
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imagePreview.innerHTML =
-                    `<div class="bg-gray-200 w-40 h-40 rounded-full flex items-center justify-center text-gray-500">No image preview</div>`;
+                    isEventListenerAdded = false;
+                }
+            });
 
-                // Remove the event listener when there's no image
-                imagePreview.removeEventListener('click', () => {
-                    uploadInput.click();
-                });
-
-                isEventListenerAdded = false;
-            }
-        });
-
-        uploadInput.addEventListener('click', (event) => {
-            event.stopPropagation();
-        });
-    </script>
+            uploadInput.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        </script>
+    @endpush
 </x-layouts.app>

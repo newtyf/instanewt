@@ -1,5 +1,5 @@
 <x-layouts.app title="{{$user->username}}">
-    <section class="w-full max-w-screen-lg mx-auto p-6">
+    <section class="w-full max-w-screen-lg mx-auto p-6 h-full overflow-y-auto">
         <article class="flex flex-col md:flex-row text-white max-w-screen-md md:p-6 md:pl-14 mb-8">
             <div class="w-32 md:w-1/4 md:h-1/4">
                 <img src="@if (!$user->photoUrl) /images/profile-photo.webp @else {{ $user->photoUrl }} @endif"
@@ -44,5 +44,8 @@
                 <x-common.post :image="$post->photoUrl" />
             @endforeach
         </section>
+        <footer class="flex justify-center my-10 text-white">
+            <h2>Instanewt</h2>
+        </footer>
     </section>
 </x-layouts.app>
