@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ $title ?? '' }}</title>
     <meta name="description" content="{{ $metaDescription ?? '' }}" />
 </head>
 
-<body class="bg-black h-screen flex @if (!auth()->check()) flex-col @endif">
+<body id="app" class="bg-black h-screen flex @if (!auth()->check()) flex-col @endif">
 
     @auth
         <x-common.aside />
@@ -18,7 +18,7 @@
     @guest
         <nav class="p-4 flex justify-between">
             <ul>
-                <li class="text-white"><a href="{{ route('home') }}">instanew</a></li>
+                <li class="text-white"><a href="{{ route('feed') }}">Instanewt</a></li>
             </ul>
             <ul class="flex">
                 <li class="text-white">
@@ -40,7 +40,7 @@
     @else
         <nav class="p-4 flex justify-between">
             <ul>
-                <li class="text-white"><a href="{{ route('home') }}">instanew</a></li>
+                <li class="text-white"><a href="{{ route('feed') }}">instanew</a></li>
             </ul>
             <ul class="flex">
                 <li class="text-white">
@@ -60,12 +60,24 @@
             <h2>Instanewt</h2>
         </footer>
     </main>
-
-    <script>
+    {{-- <script>
         document.addEventListener('dragstart', function(evt) {
             evt.preventDefault();
         });
-    </script>
+
+        function likePost(element) {
+            const icon = element.querySelector("i");
+            if (icon.dataset.liked == 0) {
+                icon.classList.replace("bi-heart", "bi-heart-fill")
+                icon.classList.toggle("text-red-500")
+                icon.dataset.liked = 1;
+            } else {
+                icon.classList.replace("bi-heart-fill", "bi-heart")
+                icon.classList.toggle("text-red-500")
+                icon.dataset.liked = 0;
+            }
+        }
+    </script> --}}
 
 </body>
 
