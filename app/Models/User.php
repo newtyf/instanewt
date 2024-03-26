@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'username',
         'biography',
+        'photoUrl',
+        'followers',
+        'following',
+        'posts',
         'email',
         'password',
     ];
