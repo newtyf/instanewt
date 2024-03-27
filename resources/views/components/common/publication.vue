@@ -1,6 +1,14 @@
 <script setup>
-import { ref } from 'vue'
 const { post } = defineProps(['post'])
+
+import { computed } from "vue";
+import { calculateRelativeDifference } from "../../../helper/RelativeTime"
+
+const formateDate = computed(() => {
+  const clientTime = new Date(post.created_at)
+  return calculateRelativeDifference(clientTime)
+})
+
 </script>
 
 <template>
@@ -14,7 +22,7 @@ const { post } = defineProps(['post'])
         <div class="ml-2">
           <h2 class="text-sm"><a :href="post.user.username">{{
             post.user.username }}</a><span class="ml-1 font-bold">&#183;</span><span id="created-time"
-              class="ml-1 font-bold text-xs">{{ post.created_at }}</span></h2>
+              class="ml-1 font-bold text-xs">{{ formateDate }}</span></h2>
         </div>
       </div>
       <div>
@@ -30,7 +38,9 @@ const { post } = defineProps(['post'])
     </div>
     <p class="text-sm mb-2"><a href="#">{{ post.likes }} likes</a></p>
     <section class="pb-6 border-b border-gray-500">
-      <p class="text-sm"><a :href="post.user.username"><span class="font-bold">{{ post.user.username }}</span></a> {{ post.description }}
+      <p class="text-sm whitespace-pre"><a :href="post.user.username"><span class="font-bold">{{ post.user.username
+            }}</span></a> {{
+            post.description }}
       </p>
     </section>
   </article>
