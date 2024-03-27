@@ -15,10 +15,10 @@ class UserController extends Controller
     public function show(Request $request, $user)
     {
         $u = User::where('username', $user)->first();
-        $p = Post::where('user_id', $u->id)->get();
         if (!$u) {
             return view('404');
         }
+        $p = Post::where('user_id', $u->id)->get();
         return view('account.profile', ['user' => $u, 'posts' => $p]);
     }
 
