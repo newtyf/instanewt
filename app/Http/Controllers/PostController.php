@@ -14,8 +14,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with("user")->orderBy("created_at", "desc")->paginate(3);
-        return json_encode($posts);
+        $posts = Post::with("user")->orderBy("created_at", "desc")->paginate(1);
+        return view("feed", ["posts" => $posts]);
     }
 
     public function store(Request $request)
