@@ -13,7 +13,8 @@ Route::post('/logout', [AuthenticatedSessionController::class, "destroy"])->name
 Route::view('/register', 'auth.register')->name("register");
 Route::post('/register', [RegisteredUserController::class, "store"])->name("register");
 
-Route::get('/', [PostController::class, "index"])->name("feed")->middleware("auth");
+Route::view('/', "feed")->name("feed")->middleware("auth");
+Route::get('/posts', [PostController::class, "index"])->name("posts.index")->middleware("auth");
 Route::view('/post/create', 'posts.create')->name("posts.create")->middleware("auth");
 Route::post('/post/create', [PostController::class, "store"])->name("posts.create")->middleware("auth");
 

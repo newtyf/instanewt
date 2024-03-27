@@ -10,7 +10,7 @@
                 class="px-4 flex w-full">
                 @csrf
                 <div class="w-2/3 pl-2 pr-4 h-80">
-                    <input id="upload" name="upload" type="file" class="hidden" accept="image/*" />
+                    {{-- <input id="upload" name="upload" type="file" class="hidden" accept="image/*" />
                     <div id="image-preview"
                         class="w-full h-full border-2 border-dashed border-blue-500 hover:bg-blue-950 rounded-md cursor-pointer">
                         <label for="upload" class="cursor-pointer w-full h-full flex flex-col items-center justify-center">
@@ -24,7 +24,7 @@
                                     class="text-gray-500">JPG, PNG, or GIF</b> format.</p>
                             <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span>
                         </label>
-                    </div>
+                    </div> --}}
                     @error('upload')
                         <small class="font-bold text-red-500">{{ $message }}</small>
                     @enderror
