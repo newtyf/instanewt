@@ -26,8 +26,6 @@ const fetchPosts = async () => {
 onMounted(() => {
   const masonry = document.querySelector('#infinite-list');
   masonry.addEventListener("scroll", e => {
-    console.log(masonry.scrollTop + masonry.clientHeight )
-    console.log(masonry.scrollHeight)
     if (masonry.scrollTop + masonry.clientHeight + 5 >= masonry.scrollHeight) {
       fetchPosts()
     };
