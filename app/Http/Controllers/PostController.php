@@ -14,7 +14,15 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with("user")->orderBy("created_at", "desc")->paginate(3);
+        $posts = Post::with("user")->with("like")->orderBy("created_at", "desc")->paginate(3);
+
+        foreach ($posts as $key => $post) {
+            $post->liked_by_user = false;
+            if ($post->like->contains('user_id', 1)) {
+               $post->liked_by_user = true;
+            }
+        }
+
         return json_encode($posts);
     }
 

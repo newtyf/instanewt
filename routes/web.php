@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,9 @@ Route::view('/', "feed")->name("feed")->middleware("auth");
 Route::get('/posts', [PostController::class, "index"])->name("posts.index")->middleware("auth");
 Route::view('/post/create', 'posts.create')->name("posts.create")->middleware("auth");
 Route::post('/post/create', [PostController::class, "store"])->name("posts.create")->middleware("auth");
+
+Route::post('/likes', [LikeController::class, "store"])->name("likes.create")->middleware("auth");
+Route::delete('/likes', [LikeController::class, "destroy"])->name("likes.destroy")->middleware("auth");
 
 Route::get('/{user}', [UserController::class, 'show'])->name("account.profile");
 Route::view('/account/settings', 'account.settings')->name("account.settings")->middleware("auth");

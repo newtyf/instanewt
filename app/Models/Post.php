@@ -13,6 +13,10 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function like() {
+        return $this->hasMany(Like::class, 'post_id');
+    }
+
     protected $fillable = [
         'description',
         'photoUrl',
