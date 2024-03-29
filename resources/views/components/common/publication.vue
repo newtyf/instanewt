@@ -1,9 +1,8 @@
 <script setup>
-const { post } = defineProps(['post'])
+const { post, currentUser } = defineProps(['post', 'currentUser'])
 
 import { computed, ref } from "vue";
 import { calculateRelativeDifference } from "../../../helper/RelativeTime"
-
 
 const liked = ref(post.liked_by_user)
 const likes = ref(post.likes)
@@ -16,7 +15,7 @@ const formateDate = computed(() => {
 const likePost = async () => {
 
   const data = {
-    user_id: post.user.id,
+    user_id: currentUser.id,
     post_id: post.id,
   }
 

@@ -1,6 +1,7 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Publication from "./publication.vue"
+const { user } = defineProps(['user'])
 
 const posts = ref([])
 const loading = ref(false)
@@ -37,7 +38,7 @@ fetchPosts()
 
 <template>
   <article class="max-w-screen-sm mx-auto">
-    <Publication v-for="post in posts" :post="post" />
+    <Publication v-for="post in posts" :post="post" :currentUser="JSON.parse(user)" />
     <div role="status" v-show="loading" class="">
       <svg aria-hidden="true" class="w-8 h-8 mx-auto my-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
         viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
