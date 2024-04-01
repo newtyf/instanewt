@@ -16,6 +16,10 @@ class UserController extends Controller
     {
         $u = User::where('username', $user)->with("follower")->first();
 
+        if (!$u) {
+            return view('404');
+        }
+
         $u->followed_by_me = false;
         if ($u->follower->contains('follower_id', Auth::user()->id)) {
             $u->followed_by_me = true;
@@ -23,9 +27,6 @@ class UserController extends Controller
 
         unset($u->follower);
 
-        if (!$u) {
-            return view('404');
-        }
         $p = Post::where('user_id', $u->id)->get();
         return view('account.profile', ['user' => $u, 'posts' => $p]);
     }
