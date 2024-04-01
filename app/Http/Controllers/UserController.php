@@ -14,7 +14,15 @@ class UserController extends Controller
 {
     public function show(Request $request, $user)
     {
-        $u = User::where('username', $user)->first();
+        $u = User::where('username', $user)->with("follower")->first();
+
+        $u->followed_by_me = false;
+        if ($u->follower->contains('follower_id', Auth::user()->id)) {
+            $u->followed_by_me = true;
+        }
+
+        unset($u->follower);
+
         if (!$u) {
             return view('404');
         }

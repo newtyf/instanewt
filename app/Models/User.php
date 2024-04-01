@@ -28,6 +28,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function follower() {
+        return $this->hasMany(Follow::class, 'following_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

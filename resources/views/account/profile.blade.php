@@ -18,8 +18,7 @@
                                 title="go to the settings">
                                 <i class="bi bi-gear-wide text-xl"></i></a>
                         @else
-                            <button
-                                class="ml-4 bg-blue-500 hover:bg-blue-600 duration-200 rounded-md px-2 py-1">Follow</button>
+                            <follow-button following="{{$user->id}}" follower="{{auth()->user()->id}}" is-followed-by-me="{{$user->followed_by_me}}" />
                         @endif
                     </div>
                     <ul class="flex mb-2">
