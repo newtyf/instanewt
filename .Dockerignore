@@ -1,0 +1,4 @@
+/vendor
+/.github
+/.vscode
+./build_and_push.sh
