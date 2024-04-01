@@ -13,8 +13,8 @@ const fetchPosts = async () => {
     if (currentPage.value > lastPage.value) return
     loading.value = true
     currentPage.value = currentPage.value + 1;
-    const response = await fetch(`/posts?page=${currentPage.value}`);
-    const { data, last_page } = await response.json();
+    const response  = await axios.get(`/posts?page=${currentPage.value}`);
+    const { data, last_page } = response.data;
     lastPage.value = last_page
     posts.value.push(...data)
   } catch (error) {
