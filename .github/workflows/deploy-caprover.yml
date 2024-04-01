@@ -4,13 +4,13 @@ env:
     CONTEXT_DIR: './'
     IMAGE_NAME: ${{ github.repository }}/staging
     DOCKERFILE: Dockerfile
-    CAPROVER_APP: svg-repository-creator
+    CAPROVER_APP: instanewt
     DOCKER_REGISTRY: ghcr.io
 
 on:
     push:
         branches:
-            - master
+            - main
         # you can specify path if you have a monorepo and you want to deploy if particular directory is changed, make sure to update `CONTEXT_DIR` too
         # paths:
         #   - "backend-app/**"
