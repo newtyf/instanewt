@@ -1,5 +1,5 @@
 <x-layouts.app title="{{ $user->username }}">
-    <section class="w-full h-full  p-6 overflow-y-auto">
+    <section class="w-full flex-1 p-6 overflow-y-auto">
         <div class="max-w-screen-lg mx-auto">
             <article class="flex flex-col md:flex-row text-white max-w-screen-md md:p-6 md:pl-14 mb-8">
                 <div class="w-32 md:w-1/4 md:h-1/4">
@@ -20,8 +20,10 @@
                                 title="go to the settings">
                                 <i class="bi bi-gear-wide text-xl"></i></a>
                         @else
-                            <follow-button following="{{ $user->id }}" follower="{{ auth()->user()->id }}"
-                                is-followed-by-me="{{ $user->followed_by_me }}" />
+                            @auth
+                                <follow-button following="{{ $user->id }}" follower="{{ auth()->user()->id }}"
+                                    is-followed-by-me="{{ $user->followed_by_me }}" />
+                            @endauth
                         @endif
                     </div>
                     <ul class="flex mb-2">
