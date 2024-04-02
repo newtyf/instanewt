@@ -3,8 +3,10 @@
         <div class="max-w-screen-lg mx-auto">
             <article class="flex flex-col md:flex-row text-white max-w-screen-md md:p-6 md:pl-14 mb-8">
                 <div class="w-32 md:w-1/4 md:h-1/4">
-                    <img src="@if (!$user->photoUrl) /images/profile-photo.webp @else {{ $user->photoUrl }} @endif"
-                        class="w-full h-full object-cover aspect-square rounded-full pointer-events-none" alt="">
+                    <a href="{{ route('account.edit') }}">
+                        <img src="@if (!$user->photoUrl) /images/profile-photo.webp @else {{ $user->photoUrl }} @endif"
+                            class="w-full h-full object-cover aspect-square rounded-full pointer-events-none"
+                            alt=""></a>
                 </div>
                 <div class="md:w-3/4 mt-10 md:mt-0 md:ml-20">
                     <div class="mb-4 flex items-center">
@@ -18,7 +20,8 @@
                                 title="go to the settings">
                                 <i class="bi bi-gear-wide text-xl"></i></a>
                         @else
-                            <follow-button following="{{$user->id}}" follower="{{auth()->user()->id}}" is-followed-by-me="{{$user->followed_by_me}}" />
+                            <follow-button following="{{ $user->id }}" follower="{{ auth()->user()->id }}"
+                                is-followed-by-me="{{ $user->followed_by_me }}" />
                         @endif
                     </div>
                     <ul class="flex mb-2">
