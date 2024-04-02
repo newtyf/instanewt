@@ -20,12 +20,14 @@ class UserController extends Controller
             return view('404');
         }
 
-        $u->followed_by_me = false;
-        if ($u->follower->contains('follower_id', Auth::user()->id)) {
-            $u->followed_by_me = true;
-        }
+        if (Auth::check()) {
+            $u->followed_by_me = false;
+            if ($u->follower->contains('follower_id', Auth::user()->id)) {
+                $u->followed_by_me = true;
+            }
 
-        unset($u->follower);
+            unset($u->follower);
+        }
 
         $p = Post::where('user_id', $u->id)->get();
         return view('account.profile', ['user' => $u, 'posts' => $p]);
@@ -36,7 +38,7 @@ class UserController extends Controller
 
         $request->validate([
             'upload' => ['file', File::image()->min(256)->max(1024)],
-            'name' => ['required', 'string',  'max:20'],
+            'name' => ['required', 'string', 'max:20'],
             'biography' => ['string', 'nullable'],
         ]);
 
@@ -54,7 +56,7 @@ class UserController extends Controller
 
         $user->save();
 
-        session()->flash("status","account edited successful");
+        session()->flash("status", "account edited successful");
         return to_route("account.edit");
 
     }
