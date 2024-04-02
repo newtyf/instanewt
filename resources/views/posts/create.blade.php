@@ -4,19 +4,18 @@
             <p class="font-bold text-sm">{{ session('status') }}</p>
         </div>
     @endif
-    <section class="mx-auto mt-20 max-w-screen-md overflow-y-auto">
-        <article class="mx-4 md:mx-auto w-full border border-neutral-600 text-white text-center py-6">
+    <section class="flex-1 mx-auto mt-10">
+        <article class="w-full border border-neutral-600 text-white py-6 px-4">
             <form action="{{ route('posts.create') }}" method="POST" enctype="multipart/form-data"
-                class="px-4 flex w-full">
+                class="flex flex-col md:flex-row w-full">
                 @csrf
-                <div class="w-2/3 pl-2 pr-4 h-80">
-
+                <div class="w-full md:w-2/3 pl-2 pr-4 h-80">
                     <upload />
                     @error('upload')
                         <small class="font-bold text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="w-1/3 flex flex-col">
+                <div class="w-full md:w-1/3 flex flex-col mt-5 md:mt-0">
                     <div class="mb-4 flex-1">
                         <label for="description">
                             <p class="text-left text-sm mb-2">Description:</p>

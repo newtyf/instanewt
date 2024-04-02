@@ -40,7 +40,7 @@ const likePost = async () => {
 </script>
 
 <template>
-  <article class="w-full px-20 text-white mt-4">
+  <article class="w-full px-10 md:px-20 text-white mt-4">
     <header class="w-full flex justify-between items-center py-3">
       <div class="flex flex-1 items-center">
         <div class="w-8 rounded-full overflow-hidden">

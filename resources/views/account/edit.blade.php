@@ -4,9 +4,9 @@
             <p class="font-bold text-sm">{{ session('status') }}</p>
         </div>
     @endif
-    <section class="mx-auto mt-20 max-w-screen-sm overflow-y-auto">
-        <article class="mx-4 md:mx-auto w-full border border-neutral-600 text-white text-center py-10">
-            <form action="{{ route('account.edit') }}" method="POST" enctype="multipart/form-data" class="px-24">
+    <section class="px-8 md:mx-auto flex-1 mt-20">
+        <article class="md:w-96 border border-neutral-600 text-white py-10">
+            <form action="{{ route('account.edit') }}" method="POST" enctype="multipart/form-data" class="px-6">
                 @csrf
                 <div class="mb-4">
                     <uploadprofile photo="{{auth()->user()->photoUrl}}" />
