@@ -23,6 +23,9 @@ RUN composer install
 RUN npm install
 
 RUN npm run build
+
+RUN php artisan storage:link
+
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
 EXPOSE 8000
