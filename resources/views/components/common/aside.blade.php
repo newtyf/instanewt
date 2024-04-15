@@ -9,6 +9,12 @@
     </ul>
     <ul class="flex flex-col flex-1 items-center space-y-2">
         <li>
+            <a href="{{ route('search.index') }}"
+                class="text-white hover:bg-white hover:bg-opacity-15 hover:scale-105 rounded-md flex items-center justify-center p-2"
+                title="go to the feed"><i
+                    class="text-2xl bi @if (request()->routeIs('search')) bi-search-heart-fill @else bi-search @endif"></i></a>
+        </li>
+        <li>
             <a href="{{ route('feed') }}"
                 class="text-white hover:bg-white hover:bg-opacity-15 hover:scale-105 rounded-md flex items-center justify-center p-2"
                 title="go to the feed"><i

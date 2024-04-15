@@ -12,6 +12,17 @@ use Illuminate\Validation\Rules\File;
 
 class UserController extends Controller
 {
+    public function index(Request $request)
+    {
+
+        $username = $request->query('username');
+
+        if (!$username) {
+            return view('search');
+        }
+
+        return $username;
+    }
     public function show(Request $request, $user)
     {
         $u = User::where('username', $user)->with("follower")->first();
