@@ -18,10 +18,11 @@ class UserController extends Controller
         $username = $request->query('username');
 
         if (!$username) {
-            return view('search');
+            return view('search', ['accounts' => null]);
         }
 
-        return $username;
+        $accounts = User::where('username', 'like', '%' . $username . '%')->limit(10)->get();
+        return view('search', ['accounts' => $accounts]);
     }
     public function show(Request $request, $user)
     {

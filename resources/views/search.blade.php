@@ -1,7 +1,3 @@
-@php
-    $users = ['juan', 'pedro', 'pepe'];
-@endphp
-
 <x-layouts.app title="Search user">
     <section class="flex-1 text-white mt-20">
         <h1 class="text-2xl font-bold text-center mb-4">Search users by username</h1>
@@ -24,36 +20,67 @@
             </div>
         </form>
 
-        @if (count($users) !== 0)
+        @if ($accounts !== null)
+            @if (count($accounts) !== 0)
+                <div
+                    class="w-full max-w-md mx-auto mt-4 p-4border border-gray-200 bg-neutral-800 rounded-lg shadow sm:p-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h5 class="text-xl font-bold leading-none text-white">Founded Users</h5>
+                    </div>
+                    <div class="flow-root">
+                        <ul role="list" class="divide-y divide-gray-200">
+                            @foreach ($accounts as $account)
+                                <li class="py-3 sm:py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <img class="w-8 h-8 rounded-full object-cover"
+                                                src="{{ $account->photoUrl }}" alt="Neil image">
+                                        </div>
+                                        <div class="flex-1 min-w-0 ms-4">
+                                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                {{ $account->username }}
+                                            </p>
+                                        </div>
+                                        <div class="inline-flex items-center text-sm font-semibold text-blue-700 ">
+                                            <a href="{{ route('account.profile', ['user' => $account->username]) }}"
+                                                class="hover:underline">visit</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @else
+                <p class="text-center mt-2">Not results...</p>
+            @endif
+        @else
             <div class="w-full max-w-md mx-auto mt-4 p-4border border-gray-200 bg-neutral-800 rounded-lg shadow sm:p-8">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-xl font-bold leading-none text-white">Founded Users</h5>
                 </div>
                 <div class="flow-root">
                     <ul role="list" class="divide-y divide-gray-200">
-                        @foreach ($users as $user)
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full"
-                                            src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
+                                        <img class="w-8 h-8 rounded-full object-cover" src="{{url('storage/avatars/newt-yf.png')}}"
+                                            alt="Neil image">
                                     </div>
                                     <div class="flex-1 min-w-0 ms-4">
                                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                            Neil Sims
+                                            newt-yf
                                         </p>
                                     </div>
                                     <div class="inline-flex items-center text-sm font-semibold text-blue-700 ">
-                                        <a href="#" class="hover:underline">visit</a>
+                                        <a href="{{ route('account.profile', ['user' => 'newt-yf']) }}"
+                                            class="hover:underline">visit</a>
                                     </div>
                                 </div>
                             </li>
-                        @endforeach
                     </ul>
                 </div>
             </div>
-        @else
-            <p class="text-center mt-2">Not results...</p>
         @endif
 
     </section>
