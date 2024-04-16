@@ -10,14 +10,14 @@
                 @csrf
                 <div class="mb-4">
                     <input name="username" type="text" class="w-full text-sm outline-none bg-neutral-800 p-1"
-                        placeholder="Username" autofocus>
+                        placeholder="Username" value="newt-yf" autofocus>
                     @error('username')
                         <small class="font-bold text-red-500">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <input name="password" type="text" class="w-full text-sm outline-none bg-neutral-800 p-1 "
-                        placeholder="Password">
+                    <input name="password" type="password" class="w-full text-sm outline-none bg-neutral-800 p-1 "
+                        placeholder="Password" value="12345678">
                     @error('password')
                         <small class="font-bold text-red-500">{{ $message }}</small>
                     @enderror
