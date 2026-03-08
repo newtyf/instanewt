@@ -64,7 +64,7 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full object-cover" src="{{url('storage/avatars/newt-yf.png')}}"
+                                        <img class="w-8 h-8 rounded-full object-cover" src="{{url('storage/avatars/newt-yf.jpg')}}"
                                             alt="Neil image">
                                     </div>
                                     <div class="flex-1 min-w-0 ms-4">
